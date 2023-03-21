@@ -1,11 +1,15 @@
+import { useAuth } from "@/context/AuthContext";
+import { useAmp } from "next/amp";
 import { useState } from "react";
 
 export default function Login() {
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
   const [error , setError ] = useState(null)
-  const [login , setIsLogin ] = useState(true)
+  const [Login , setIsLogin ] = useState(true)
+  const {login , signUp } = useAuth()
   function submitHandler(){
+
     if(!email || !password) {
       setError("Please Enter Username Password")
     }
@@ -13,13 +17,19 @@ export default function Login() {
     {
       setError(null)
     }
+
+    if(Login){
+      return login(email,password);
+    }
+    signUp(email,password)
+
   }
   return (
     <>
       <div className="flex-1 text-white flex gap-6 text-xs flex-col sm:text-sm justify-center bg-inherit items-center">
         <h1 className="font-extrabold text-2xl select-none sm:text-4xl">
           {
-            login ? "LOGIN" : "REGISTER"
+            Login ? "Login" : "REGISTER"
           }
         </h1>
         {
@@ -46,7 +56,7 @@ export default function Login() {
         >
           <h2 className="relative z-20">SUBMIT</h2>
         </button>
-        <h2 className =  "duration-300 hover:scale-110 cursor-pointer"onClick={(e) => setIsLogin(!login)}>{!login ? 'LOGIN' : 'REGISTER'}</h2>
+        <h2 className =  "duration-300 hover:scale-110 cursor-pointer"onClick={(e) => setIsLogin(!Login)}>{!Login ? 'Login' : 'REGISTER'}</h2>
       </div>
     </>
   );

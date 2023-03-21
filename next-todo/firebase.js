@@ -8,9 +8,9 @@ import { getFirestore } from 'firebase/firestore'
 //     authDomain: process.env.NEXT_PUBLIC_AUTH,
 //     projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
 //     storageBucket: process.env.NEXT_PUBLIC__STORAGE,
-//     messagingSenderId: process.env.NEXT_PUBLIC__SENDER_ID,
+//     messagingSenderId: process.env.NEXT_PUBLIC_SENDER_ID,
 //     appId: process.env.NEXT_PUBLIC_APP_ID,
-//     measurementId: process.env.NEXT_PUBLIC__MEASUREMENT_ID
+//     measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID
 // };
 //For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
