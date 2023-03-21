@@ -4,18 +4,26 @@ export default function Login() {
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
   const [error , setError ] = useState(null)
-
+  const [login , setIsLogin ] = useState(true)
   function submitHandler(){
-    if(!email || !password) {return}
+    if(!email || !password) {
+      setError("Please Enter Username Password")
+    }
+    else
+    {
+      setError(null)
+    }
   }
   return (
     <>
       <div className="flex-1 text-white flex gap-6 text-xs flex-col sm:text-sm justify-center bg-inherit items-center">
         <h1 className="font-extrabold text-2xl select-none sm:text-4xl">
-          LOGIN
+          {
+            login ? "LOGIN" : "REGISTER"
+          }
         </h1>
         {
-          error && <div>Error : { error }</div>
+          error && <div className="w-full text-center max-w-[65ch] border-rose-300 border border-solid text-rose-400 py-2">Error : { error }</div>
         }
         <input
         value={email}
@@ -32,11 +40,13 @@ export default function Login() {
           placeholder="Password"
         ></input>
         <button 
+         onClick={submitHandler}
           className="w-full max-w-[65ch] border-solid p-1 py-2 b overflow-hidden border duration-300  relative after:absolute after:right-full
-         after:bg-gradient-to-tr after:from-pink-800  after:to-red-600 after:via-purple-600 after:z-10 after:w-full after:h-full   hover:after:translate-x-full after:duration-300 transition-all after:-translate-y-6 md:after:-translate-y-7"
+         after:bg-gradient-to-tr after:from-pink-800  after:to-red-300 after:via-purple-600 after:z-10 after:w-full after:h-full   hover:after:translate-x-full after:duration-300 transition-all after:-translate-y-6 md:after:-translate-y-7"
         >
           <h2 className="relative z-20">SUBMIT</h2>
         </button>
+        <h2 className =  "duration-300 hover:scale-110 cursor-pointer"onClick={(e) => setIsLogin(!login)}>{!login ? 'LOGIN' : 'REGISTER'}</h2>
       </div>
     </>
   );
